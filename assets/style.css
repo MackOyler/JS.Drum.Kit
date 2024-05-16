@@ -1,20 +1,4 @@
-html {
-    font-size: 10px;
-    background: url('./background.jpg') bottom center;
-    background-size: cover;
-  }
-  
-  body,html {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-  }
-
-  .keys {
-    display: flex;
-    flex: 1;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-  }
-  
+.key.playing {
+  transform: scale(1.1);
+  transition: transform 0.07s ease;
+}

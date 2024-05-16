@@ -3,80 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <title>JavaScript Drum Kit</title>
-  <link rel="stylesheet" href="./assets/style.css">
-  <link rel="icon" href="https://fav.farm/✅" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="icon" href="https://fav.farm/🥁" />
 </head>
-<body> 
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen"> 
+  <div class="keys grid grid-cols-3 gap-4 p-5">
+    <div data-key="65" class="key bg-gray-700 p-4 rounded shadow-lg text-center">
+      <kbd class="text-3xl">A</kbd>
+      <span class="sound block mt-2">clap</span>
+    </div>
+    <div data-key="83" class="key bg-gray-700 p-4 rounded shadow-lg text-center">
+      <kbd class="text-3xl">S</kbd>
+      <span class="sound block mt-2">hihat</span>
+    </div>
+    <div data-key="68" class="key bg-gray-700 p-4 rounded shadow-lg text-center">
+      <kbd class="text-3xl">D</kbd>
+      <span class="sound block mt-2">kick</span>
+    </div>
+    <div data-key="70" class="key bg-gray-700 p-4 rounded shadow-lg text-center">
+      <kbd class="text-3xl">F</kbd>
+      <span class="sound block mt-2">openhat</span>
+    </div>
+    <div data-key="71" class="key bg-gray-700 p-4 rounded shadow-lg text-center">
+      <kbd class="text-3xl">G</kbd>
+      <span class="sound block mt-2">boom</span>
+    </div>
+    <div data-key="72" class="key bg-gray-700 p-4 rounded shadow-lg text-center">
+      <kbd class="text-3xl">H</kbd>
+      <span class="sound block mt-2">ride</span>
+    </div>
+    <div data-key="74" class="key bg-gray-700 p-4 rounded shadow-lg text-center">
+      <kbd class="text-3xl">J</kbd>
+      <span class="sound block mt-2">snare</span>
+    </div>
+    <div data-key="75" class="key bg-gray-700 p-4 rounded shadow-lg text-center">
+      <kbd class="text-3xl">K</kbd>
+      <span class="sound block mt-2">tom</span>
+    </div>
+    <div data-key="76" class="key bg-gray-700 p-4 rounded shadow-lg text-center">
+      <kbd class="text-3xl">L</kbd>
+      <span class="sound block mt-2">tink</span>
+    </div>
+  </div>
 
-    <div class="keys">
-        <div data-key="65" class="key">
-          <kbd>A</kbd>
-          <span class="sound">clap</span>
-        </div>
-        <div data-key="83" class="key">
-          <kbd>S</kbd>
-          <span class="sound">hihat</span>
-        </div>
-        <div data-key="68" class="key">
-          <kbd>D</kbd>
-          <span class="sound">kick</span>
-        </div>
-        <div data-key="70" class="key">
-          <kbd>F</kbd>
-          <span class="sound">openhat</span>
-        </div>
-        <div data-key="71" class="key">
-          <kbd>G</kbd>
-          <span class="sound">boom</span>
-        </div>
-        <div data-key="72" class="key">
-          <kbd>H</kbd>
-          <span class="sound">ride</span>
-        </div>
-        <div data-key="74" class="key">
-          <kbd>J</kbd>
-          <span class="sound">snare</span>
-        </div>
-        <div data-key="75" class="key">
-          <kbd>K</kbd>
-          <span class="sound">tom</span>
-        </div>
-        <div data-key="76" class="key">
-          <kbd>L</kbd>
-          <span class="sound">tink</span>
-        </div>
-      </div>
-
-      <audio data-key="65" src="sounds/clap.wav"></audio>
-  <audio data-key="83" src="sounds/hihat.wav"></audio>
-  <audio data-key="68" src="sounds/kick.wav"></audio>
-  <audio data-key="70" src="sounds/openhat.wav"></audio>
-  <audio data-key="71" src="sounds/boom.wav"></audio>
-  <audio data-key="72" src="sounds/ride.wav"></audio>
-  <audio data-key="74" src="sounds/snare.wav"></audio>
-  <audio data-key="75" src="sounds/tom.wav"></audio>
-  <audio data-key="76" src="sounds/tink.wav"></audio>
+  <audio data-key="65" src="./assets/sounds/clap.wav"></audio>
+  <audio data-key="83" src="./assets/sounds/hihat.wav"></audio>
+  <audio data-key="68" src="./assets/sounds/kick.wav"></audio>
+  <audio data-key="70" src="./assets/sounds/openhat.wav"></audio>
+  <audio data-key="71" src="./assets/sounds/boom.wav"></audio>
+  <audio data-key="72" src="./assets/sounds/ride.wav"></audio>
+  <audio data-key="74" src="./assets/sounds/snare.wav"></audio>
+  <audio data-key="75" src="./assets/sounds/tom.wav"></audio>
+  <audio data-key="76" src="./assets/sounds/tink.wav"></audio>
 
   <script>
     function removeTransition(e) {
-    if (e.propertyName !== 'transform') return;
-    e.target.classList.remove('playing');
-  }
+      if (e.propertyName !== 'transform') return;
+      e.target.classList.remove('playing');
+    }
 
-  function playSound(e) {
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-    if (!audio) return;
+    function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+      if (!audio) return;
 
-    key.classList.add('playing');
-    audio.currentTime = 0;
-    audio.play();
-  }
+      key.classList.add('playing');
+      audio.currentTime = 0;
+      audio.play();
+    }
 
-  const keys = Array.from(document.querySelectorAll('.key'));
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-  window.addEventListener('keydown', playSound);
+    const keys = Array.from(document.querySelectorAll('.key'));
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
   </script>
-
-  </body>
-  </html>
+</body>
+</html>
